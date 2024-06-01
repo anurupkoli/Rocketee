@@ -8,6 +8,9 @@ public class CollisionDetector : MonoBehaviour
     [SerializeField] float delay = 2f;
     [SerializeField] AudioClip rocketeeDeath;
     [SerializeField] AudioClip levelComplete;
+    [SerializeField] ParticleSystem deathParticles;
+    [SerializeField] ParticleSystem successParticles;
+
 
     AudioSource[] audioSources;
     bool transitioning = false;
@@ -36,6 +39,7 @@ public class CollisionDetector : MonoBehaviour
     void CrashHandle()
     {
         transitioning = true;
+        deathParticles.Play();
         audioSources[0].Stop();
         audioSources[0].PlayOneShot(rocketeeDeath);
         GetComponent<Movement>().enabled = false;
@@ -50,6 +54,7 @@ public class CollisionDetector : MonoBehaviour
     void LevelComplete()
     {  
         transitioning = true;
+        successParticles.Play();
         audioSources[0].Stop();
         audioSources[0].PlayOneShot(levelComplete);
         GetComponent<Movement>().enabled = false;

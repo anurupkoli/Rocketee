@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     [SerializeField] float rotationThrust = 200f;
     [SerializeField] AudioClip rocekteeThrust;
     [SerializeField] AudioClip rocketeeEngine;
+    [SerializeField] ParticleSystem engineParticles;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
+            engineParticles.Play();
             if (!audioSources[0].isPlaying)
             {
                 audioSources[1].Stop();
@@ -40,6 +42,7 @@ public class Movement : MonoBehaviour
             audioSources[0].Stop();
             if (!audioSources[1].isPlaying)
             {
+                engineParticles.Stop();
                 audioSources[1].PlayOneShot(rocketeeEngine);
             }
         }
