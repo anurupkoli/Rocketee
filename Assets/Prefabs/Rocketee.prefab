@@ -369,7 +369,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2711740684018055218}
-  - component: {fileID: 2479511795013535256}
   m_Layer: 0
   m_Name: Rocketee
   m_TagString: Untagged
@@ -393,18 +392,3 @@ Transform:
   - {fileID: 4058506880159041233}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2479511795013535256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6075841182631455166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eb10d518650ce74983582a4a4dd1f05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 1
-  rocketeeDeath: {fileID: 0}
-  levelComplete: {fileID: 0}
