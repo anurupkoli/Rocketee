@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class CollisionDetector : MonoBehaviour
 {
+    [SerializeField] float delay = 1f;
+    [SerializeField] AudioClip rocketeeDeath;
+    [SerializeField] AudioClip levelComplete;
+
+    AudioSource audioSource;
+    void Start(){
+        audioSource = GetComponent<AudioSource>();
+    }
     private void OnCollisionEnter(Collision other)
     {
         switch (other.gameObject.tag)
@@ -13,7 +21,7 @@ public class CollisionDetector : MonoBehaviour
                 Debug.Log("Collided with friendly");
                 break;
             case "Finish":
-                NextLevel();
+                LevelComplete();
                 break;
             default:
                 CrashHandle();
@@ -21,18 +29,34 @@ public class CollisionDetector : MonoBehaviour
         }
     }
 
-    void CrashHandle(){
+    void CrashHandle()
+    {
+        if(!audioSource.isPlaying){
+            audioSource.PlayOneShot(rocketeeDeath);
+        }
         GetComponent<Movement>().enabled = false;
-        ReloadLevel();
+        Invoke("ReloadLevel", delay);
     }
-    void ReloadLevel(){
+    void ReloadLevel()
+    {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
 
-    void NextLevel(){
+    void LevelComplete()
+    {  
+        if(!audioSource.isPlaying){
+            audioSource.PlayOneShot(levelComplete);
+        }
+        GetComponent<Movement>().enabled = false;
+        Invoke("NextLevel", delay);
+    }
+
+    void NextLevel()
+    {
         int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        if(nextLevel >= SceneManager.sceneCountInBuildSettings){
+        if (nextLevel >= SceneManager.sceneCountInBuildSettings)
+        {
             nextLevel = 0;
         }
         SceneManager.LoadScene(nextLevel);

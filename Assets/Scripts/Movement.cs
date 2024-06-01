@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour
     AudioSource[] audioSources;
     [SerializeField] float mainThrust = 1000f;
     [SerializeField] float rotationThrust = 200f;
+    [SerializeField] AudioClip rocekteeThrust;
+    [SerializeField] AudioClip rocketeeEngine;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,17 +31,16 @@ public class Movement : MonoBehaviour
             if (!audioSources[0].isPlaying)
             {
                 audioSources[1].Stop();
-                audioSources[0].Play();
+                audioSources[0].PlayOneShot(rocekteeThrust);
             }
             rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
         }
         else
         {
-
             audioSources[0].Stop();
             if (!audioSources[1].isPlaying)
             {
-                audioSources[1].Play();
+                audioSources[1].PlayOneShot(rocketeeEngine);
             }
         }
     }

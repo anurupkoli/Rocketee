@@ -151,6 +151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainThrust: 1000
   rotationThrust: 200
+  rocekteeThrust: {fileID: 8300000, guid: 16970d1139db9064cab32c06af0f7746, type: 3}
+  rocketeeEngine: {fileID: 8300000, guid: 5e44b9f6b6a84be49848eaadba95796c, type: 3}
 --- !u!82 &1849385831357959910
 AudioSource:
   m_ObjectHideFlags: 0
@@ -161,7 +163,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 16970d1139db9064cab32c06af0f7746, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -257,7 +259,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5e44b9f6b6a84be49848eaadba95796c, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -355,6 +357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb10d518650ce74983582a4a4dd1f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 1
+  rocketeeDeath: {fileID: 8300000, guid: f1e1f8a70c293104c94834e4789a119c, type: 3}
+  levelComplete: {fileID: 8300000, guid: d4198f4c1896329429279c2cf695dd9d, type: 3}
 --- !u!1 &6075841182631455166
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,3 +405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb10d518650ce74983582a4a4dd1f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 1
+  rocketeeDeath: {fileID: 0}
+  levelComplete: {fileID: 0}
