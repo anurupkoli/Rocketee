@@ -535,6 +535,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocketee
       objectReference: {fileID: 0}
+    - target: {fileID: 8077619359184097930, guid: fe20981ee37e77749bb05c3d34cd3e5b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

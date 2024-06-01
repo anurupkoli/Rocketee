@@ -9,9 +9,9 @@ public class CollisionDetector : MonoBehaviour
     [SerializeField] AudioClip rocketeeDeath;
     [SerializeField] AudioClip levelComplete;
 
-    AudioSource audioSource;
+    AudioSource[] audioSources;
     void Start(){
-        audioSource = GetComponent<AudioSource>();
+        audioSources = GetComponents<AudioSource>();
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -31,9 +31,7 @@ public class CollisionDetector : MonoBehaviour
 
     void CrashHandle()
     {
-        if(!audioSource.isPlaying){
-            audioSource.PlayOneShot(rocketeeDeath);
-        }
+        audioSources[0].PlayOneShot(rocketeeDeath);
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", delay);
     }
@@ -45,9 +43,7 @@ public class CollisionDetector : MonoBehaviour
 
     void LevelComplete()
     {  
-        if(!audioSource.isPlaying){
-            audioSource.PlayOneShot(levelComplete);
-        }
+        audioSources[0].PlayOneShot(levelComplete);
         GetComponent<Movement>().enabled = false;
         Invoke("NextLevel", delay);
     }
