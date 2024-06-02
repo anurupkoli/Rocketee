@@ -31,25 +31,51 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            if (!audioSources[0].isPlaying)
-            {
-                if(!engineParticles.isPlaying){
-                    engineParticles.Play();
-                }
-                audioSources[1].Stop();
-                audioSources[0].PlayOneShot(rocekteeThrust);
-            }
-            rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+            StartThrusting();
         }
         else
         {
+            StopThrusting();
+        }
+    }
+
+    void StartThrusting()
+    {
+        StartEngineThrustSound();
+        rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+    }
+
+    void StopThrusting()
+    {
+        engineParticles.Stop();
+        audioSources[0].Stop();
+        StartEngineSound();
+    }
+
+    void StartEngineSound()
+    {
+        if (!audioSources[1].isPlaying)
+        {
             engineParticles.Stop();
-            audioSources[0].Stop();
-            if (!audioSources[1].isPlaying)
-            {
-                engineParticles.Stop();
-                audioSources[1].PlayOneShot(rocketeeEngine);
-            }
+            audioSources[1].PlayOneShot(rocketeeEngine);
+        }
+    }
+
+    void StartEngineThrustSound()
+    {
+        if (!audioSources[0].isPlaying)
+        {
+            StartEngineParticles();
+            audioSources[1].Stop();
+            audioSources[0].PlayOneShot(rocekteeThrust);
+        }
+    }
+
+    void StartEngineParticles()
+    {
+        if (!engineParticles.isPlaying)
+        {
+            engineParticles.Play();
         }
     }
 
@@ -58,24 +84,52 @@ public class Movement : MonoBehaviour
         rb.freezeRotation = true; //freezing game's physics rotation so that I can maually rotate rocketee
         if (Input.GetKey(KeyCode.A))
         {
-            leftThrustParticles.Stop();
-            if(!rightThrustParticles.isPlaying){
-                rightThrustParticles.Play();
-            }
-            transform.Rotate(Vector3.forward * rotationThrust * Time.deltaTime);
+            RotateLeft();
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            rightThrustParticles.Stop();
-            if(!leftThrustParticles.isPlaying){
-                leftThrustParticles.Play();
-            }
-            transform.Rotate(-Vector3.forward * rotationThrust * Time.deltaTime);
+            RotateRight();
         }
-        else{
-            leftThrustParticles.Stop();
-            rightThrustParticles.Stop();
+        else
+        {
+            StopThrustingParticles();
         }
         rb.freezeRotation = false;//unfreezing game's physics rotation
+    }
+
+    void RotateLeft()
+    {
+        FireRightThrustParticles();
+        transform.Rotate(Vector3.forward * rotationThrust * Time.deltaTime);
+    }
+
+    void FireRightThrustParticles()
+    {
+        leftThrustParticles.Stop();
+        if (!rightThrustParticles.isPlaying)
+        {
+            rightThrustParticles.Play();
+        }
+    }
+
+    void RotateRight()
+    {
+        FireLeftThrustParticles();
+        transform.Rotate(-Vector3.forward * rotationThrust * Time.deltaTime);
+    }
+
+    void FireLeftThrustParticles()
+    {
+        rightThrustParticles.Stop();
+        if (!leftThrustParticles.isPlaying)
+        {
+            leftThrustParticles.Play();
+        }
+    }
+
+    void StopThrustingParticles()
+    {
+        leftThrustParticles.Stop();
+        rightThrustParticles.Stop();
     }
 }
