@@ -14,12 +14,23 @@ public class CollisionDetector : MonoBehaviour
 
     AudioSource[] audioSources;
     bool transitioning = false;
+    bool stopCollidor = false;
     void Start(){
         audioSources = GetComponents<AudioSource>();
     }
+
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.L)){
+            NextLevel();
+        }
+        else if(Input.GetKeyDown(KeyCode.C)){
+            stopCollidor = !stopCollidor;
+        }
+    }
+
     private void OnCollisionEnter(Collision other)
     {
-        if(transitioning)
+        if(transitioning || stopCollidor)
             return;
 
         switch (other.gameObject.tag)
