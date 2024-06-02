@@ -36,7 +36,6 @@ public class CollisionDetector : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Friendly":
-                Debug.Log("Collided with friendly");
                 break;
             case "Finish":
                 LevelComplete();
