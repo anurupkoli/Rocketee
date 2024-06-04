@@ -19,6 +19,7 @@ public class Oscillator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(period <= Mathf.Epsilon){return;}
         movementVectorFactor = CalculateMovementFactor();
         Vector3 newPosition = movementVector * movementVectorFactor;
         transform.position = position + newPosition;
